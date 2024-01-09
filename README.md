@@ -26,9 +26,3 @@ Die App speichert das ausgewählte Bild im internen Speicher mit dem Dateinamen 
 Die App fängt `FileNotFoundException` und `IOException` ab, die beim Arbeiten mit Bildern und Dateien auftreten können. Im Falle eines solchen Fehlers wird der Stacktrace des Fehlers ausgegeben.
 
 ![image](https://github.com/Moon-Mind/Fahrkarten_openner/assets/52799853/cfd3ee29-81be-4488-8209-f7ea8762c1eb)
-
-<<<<<<< HEAD
-okplpl
-=======
-ok
->>>>>>> 648c365 (ok)
