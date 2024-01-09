@@ -27,4 +27,8 @@ Die App fängt `FileNotFoundException` und `IOException` ab, die beim Arbeiten m
 
 ![image](https://github.com/Moon-Mind/Fahrkarten_openner/assets/52799853/cfd3ee29-81be-4488-8209-f7ea8762c1eb)
 
+<<<<<<< HEAD
 okplpl
+=======
+ok
+>>>>>>> 648c365 (ok)
