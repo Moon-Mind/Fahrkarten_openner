@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Setze den Titel der ActionBar
+        supportActionBar?.title = "Dein Titel hier"
+
         val imageView: ImageView = findViewById(R.id.imageView)
         val imageUri = getImageUriFromInternalStorage()
         if (imageUri != null) {
@@ -34,6 +39,21 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, PICK_IMAGE)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                // Hier kannst du die Aktion für das Einstellungsmenü hinzufügen
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -51,8 +71,6 @@ class MainActivity : AppCompatActivity() {
                 saveImageToInternalStorage(bitmap)
 
                 // TextView aktualisieren
-                val importImageTextView: TextView = findViewById(R.id.import_image)
-                importImageTextView.text = getString(R.string.import_image)
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
             }

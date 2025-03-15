@@ -2,5 +2,6 @@
     <string name="app_name">Fahrkarten_openner</string>
     <string name="selected_image">Ausgewähltes Bild</string>
     <string name="select_image">Bild auswählen</string>
-    <string name="import_image">Bild importieren</string> <!-- Neuer String hinzugefügt -->
+    <string name="import_image">Bild importieren</string>
+    <string name="action_settings">Einstellungen</string> <!-- Neuer String hinzugefügt -->
 </resources>
