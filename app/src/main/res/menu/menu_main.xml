@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_add_image"
         android:title="Bild hinzufügen"
         android:orderInCategory="101"
         app:showAsAction="always"
         android:icon="@android:drawable/ic_menu_add" />
+    <item
+        android:id="@+id/action_change_title"
+        android:title="Titel ändern"
+        android:orderInCategory="102"
+        app:showAsAction="never" />
 </menu>

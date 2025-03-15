@@ -1,18 +1,21 @@
 package com.example.fahrkarten_openner
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import java.io.FileNotFoundException
 import java.io.IOException
-import android.content.Context
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +34,6 @@ class MainActivity : AppCompatActivity() {
         if (imageUri != null) {
             imageView.setImageURI(imageUri)
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,18 +43,38 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> {
-                // Hier kannst du die Aktion für das Einstellungsmenü hinzufügen
-                true
-            }
+
             R.id.action_add_image -> {
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.type = "image/*"
                 startActivityForResult(intent, PICK_IMAGE)
                 true
             }
+            R.id.action_change_title -> {
+                showChangeTitleDialog()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showChangeTitleDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Titel ändern")
+
+        val viewInflated = LayoutInflater.from(this).inflate(R.layout.dialog_change_title, null)
+        val input = viewInflated.findViewById<EditText>(R.id.input)
+
+        builder.setView(viewInflated)
+
+        builder.setPositiveButton(android.R.string.ok) { dialog, _ ->
+            dialog.dismiss()
+            val newTitle = input.text.toString()
+            supportActionBar?.title = newTitle
+        }
+        builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
+
+        builder.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
