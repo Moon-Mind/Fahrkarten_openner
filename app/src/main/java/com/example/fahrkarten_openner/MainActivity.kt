@@ -8,9 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -34,12 +32,7 @@ class MainActivity : AppCompatActivity() {
             imageView.setImageURI(imageUri)
         }
 
-        val button: FloatingActionButton = findViewById(R.id.fab)
-        button.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, PICK_IMAGE)
-        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,6 +44,12 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> {
                 // Hier kannst du die Aktion für das Einstellungsmenü hinzufügen
+                true
+            }
+            R.id.action_add_image -> {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                startActivityForResult(intent, PICK_IMAGE)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -69,8 +68,6 @@ class MainActivity : AppCompatActivity() {
             try {
                 val bitmap: Bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri!!))
                 saveImageToInternalStorage(bitmap)
-
-                // TextView aktualisieren
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
             }
